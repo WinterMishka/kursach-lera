@@ -138,9 +138,9 @@ namespace kursach {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide(); // —крываем текущую форму
-		Function^ function = gcnew Function(); // ѕередаЄм указатель на родител€
+		// —оздаем экземпл€р формы Function и передаЄм в него указатель на текущую форму (this)
+		Function^ function = gcnew Function(this);
 		function->Show();
-
 	}
 	};
 }

@@ -119,7 +119,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Arrayy.cpp" />
     <ClCompile Include="Arrayy1.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="Matriks.cpp" />
@@ -132,6 +131,7 @@
     <ClInclude Include="Function.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FunctionCalculator.h" />
     <ClInclude Include="Matriks.h">
       <FileType>CppForm</FileType>
     </ClInclude>
