@@ -231,7 +231,7 @@ namespace kursach {
 			// 
 			this->button_Task6->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->button_Task6->Location = System::Drawing::Point(1, 161);
-			this->button_Task6->Margin = System::Windows::Forms::Padding(1);
+		 this->button_Task6->Margin = System::Windows::Forms::Padding(1);
 			this->button_Task6->Name = L"button_Task6";
 			this->button_Task6->Size = System::Drawing::Size(261, 35);
 			this->button_Task6->TabIndex = 5;
@@ -425,6 +425,15 @@ namespace kursach {
 			if (ofd->ShowDialog() != System::Windows::Forms::DialogResult::OK) return;
 			String^ text = System::IO::File::ReadAllText(ofd->FileName);
 			arrayData->Clear();
+
+			// ”дал€ем обрамл€ющие символы, которые могут мешать парсингу (например '[' или ']')
+			text = text->Replace("[", " ");
+			text = text->Replace("]", " ");
+			text = text->Replace("(" , " ");
+			text = text->Replace(")" , " ");
+			text = text->Replace("{" , " ");
+			text = text->Replace("}" , " ");
+
 			array<String^>^ parts = text->Split(gcnew array<wchar_t>{' ', '\n', '\r', '\t', ',', ';'}, StringSplitOptions::RemoveEmptyEntries);
 			double v;
 			for each (String^ p in parts) {
