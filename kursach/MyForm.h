@@ -1,5 +1,7 @@
 #pragma once
 #include "Function.h"
+#include "Arrayy1.h" // Добавляем новую форму
+#include "Matriks.h" // Добавляем форму матриц
 
 namespace kursach {
 
@@ -46,7 +48,7 @@ namespace kursach {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -56,10 +58,10 @@ namespace kursach {
 		void InitializeComponent(void)
 		{
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -84,6 +86,17 @@ namespace kursach {
 			this->tableLayoutPanel1->Size = System::Drawing::Size(624, 429);
 			this->tableLayoutPanel1->TabIndex = 0;
 			// 
+			// button4
+			// 
+			this->button4->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->button4->Location = System::Drawing::Point(0, 321);
+			this->button4->Margin = System::Windows::Forms::Padding(0);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(624, 108);
+			this->button4->TabIndex = 3;
+			this->button4->Text = L"Система помощи";
+			this->button4->UseVisualStyleBackColor = true;
+			// 
 			// button3
 			// 
 			this->button3->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -106,6 +119,7 @@ namespace kursach {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Массивы";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button1
 			// 
@@ -118,17 +132,6 @@ namespace kursach {
 			this->button1->Text = L"Функции";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
-			// 
-			// button4
-			// 
-			this->button4->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->button4->Location = System::Drawing::Point(0, 321);
-			this->button4->Margin = System::Windows::Forms::Padding(0);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(624, 108);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"Система помощи";
-			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
@@ -156,7 +159,15 @@ namespace kursach {
 		Function^ function = gcnew Function(this);
 		function->Show();
 	}
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide(); // Скрываем текущую форму
+		Arrayy^ arrayForm = gcnew Arrayy(this); // Pass 'this' as the parent
+		arrayForm->Show();
 	}
-};
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide(); // Скрываем текущую форму
+		Matriks^ matrixForm = gcnew Matriks(this); // Pass 'this' as the parent
+		matrixForm->Show();
+	}
+	};
 }

@@ -15,12 +15,11 @@ namespace kursach {
 	public ref class Matriks : public System::Windows::Forms::Form
 	{
 	public:
-		Matriks(void)
+		// »змененный конструктор, который принимает родительскую форму
+		Matriks(System::Windows::Forms::Form^ parent)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			parentForm = parent; // —охран€ем ссылку на родительскую форму
 		}
 
 	protected:
@@ -36,10 +35,13 @@ namespace kursach {
 		}
 
 	private:
+		System::Windows::Forms::Form^ parentForm; // —сылка на родительскую форму (MyForm)
+
+	private:
 		/// <summary>
 		/// ќб€зательна€ переменна€ конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -57,9 +59,17 @@ namespace kursach {
 			this->ClientSize = System::Drawing::Size(624, 429);
 			this->Name = L"Matriks";
 			this->Text = L"Matriks";
+			// ƒобавл€ем обработчик событи€ закрыти€ формы
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &Matriks::Matriks_FormClosed);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+
+	private:
+		// —обытие, которое срабатывает после закрыти€ формы
+		System::Void Matriks_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
+			parentForm->Show(); // ѕоказываем родительскую форму (главное меню)
+		}
 	};
 }
